@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
-// const { nanoid } = require("nanoid");
+const { nanoid } = require("nanoid");
+
 
 const { basedir } = global;
 
@@ -18,11 +19,11 @@ const register = async (req, res) => {
         throw createError(409, `${email} is already exist`);
     }
     const hashPassword = await bcrypt.hash(password, 10);
-    // const verificationToken = nanoid();
+    const verificationToken = nanoid();
     const result = await User.create({
         ...req.body,
         password: hashPassword,
-        // verificationToken,
+        verificationToken,
     });
 
     res.status(201).json({
