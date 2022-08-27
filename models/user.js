@@ -7,10 +7,10 @@ const emailRegexp = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~
 
 const userSchema = Schema(
     {
-        name: {
-            type: String,
-            required: true,
-        },
+        // name: {
+        //     type: String,
+        //     required: true,
+        // },
         email: {
             type: String,
             minlength: 10,
@@ -24,13 +24,16 @@ const userSchema = Schema(
             minlength: 6,
             required: true,
         },
-
         token: {
             type: String,
         },
         verify: {
             type: Boolean,
             default: false,
+        },
+        balance:{
+            type: Number,
+            default: 0,
         }
     },
     { versionKey: false, timestamps: true },
