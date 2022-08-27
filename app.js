@@ -8,7 +8,7 @@ const authRouter = require("./routes/api/auth");
 
 const app = express();
 
-require("dotenv").config();
+require("dotenv").config("/");
 
 const formatsLogger = app.get("env") === "development" ? "dev" : "short";
 
