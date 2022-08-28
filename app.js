@@ -6,6 +6,10 @@ global.basedir = __dirname;
 
 const { authRouter, googleRouter } = require("./routes/api/");
 
+const transactionRouter = require("./routes/api/transaction");
+
+const userRouter = require("./routes/api/users");
+
 const app = express();
 
 require("dotenv").config();
@@ -20,6 +24,10 @@ app.use(express.static("public"));
 app.use("/api/auth/", authRouter);
 
 app.use("/api/googleAuth/", googleRouter);
+
+app.use("/api/transaction", transactionRouter);
+
+app.use("/api/user", userRouter);
 
 // app.use((req, res) => {
 //   res.status(404).json({ message: "Not found почему-то" });
