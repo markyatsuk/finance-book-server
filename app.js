@@ -4,7 +4,7 @@ const cors = require("cors");
 
 global.basedir = __dirname;
 
-const { authRouter, googleRouter } = require("./routes/api/");
+const { authRouter } = require("./routes/api/");
 
 const transactionRouter = require("./routes/api/transaction");
 
@@ -23,7 +23,7 @@ app.use(express.static("public"));
 
 app.use("/api/auth/", authRouter);
 
-app.use("/api/googleAuth/", googleRouter);
+// app.use("/api/googleAuth/", googleRouter);
 
 app.use("/api/transaction", transactionRouter);
 

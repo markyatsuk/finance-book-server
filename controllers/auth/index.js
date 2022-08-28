@@ -1,5 +1,5 @@
 const register = require("./register");
-const verifyEmail = require("./verifyEmail");
+// const verifyEmail = require("./verifyEmail");
 const getCurrent = require("./getCurrent");
 const login = require("./login");
 const logout = require("./logout");
@@ -8,7 +8,7 @@ const googleRedirect = require("./googleRedirect");
 
 module.exports = {
     register,
-    verifyEmail,
+    // verifyEmail,
     login,
     logout,
     getCurrent,

@@ -1,6 +1,11 @@
 const queryString = require("query-string");
 const axios = require("axios");
-// const URL = require("url");
+
+const { basedir } = global;
+
+const { User } = require(`${basedir}/models/user`);
+
+const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, BASE_URL, FRONTEND_URL } = process.env;
 
 const googleRedirect = async (req, res) => {
   const fullUrl = `${req.protocol}://${req.get("host")}${req.originalUrl}`;
@@ -12,9 +17,9 @@ const googleRedirect = async (req, res) => {
     url: `https://oauth2.googleapis.com/token`,
     method: "post",
     data: {
-      client_id: process.env.GOOGLE_CLIENT_ID,
-      client_secret: process.env.GOOGLE_CLIENT_SECRET,
-      redirect_uri: `${process.env.BASE_URL}/auth/google-redirect`,
+      client_id: GOOGLE_CLIENT_ID,
+      client_secret: GOOGLE_CLIENT_SECRET,
+      redirect_uri: `${BASE_URL}/api/auth/google-redirect`,
       grant_type: "authorization_code",
       code,
     }
@@ -28,19 +33,32 @@ const googleRedirect = async (req, res) => {
       Authorization: `Bearer ${tokenData.data.access_token}`,
 
     },
-  });
-  console.log(userData);
+  }); console.log("Google USER_DATA", userData.data);
 
-  // userData.data.email
-  // ...
-  // ...
-  // ...
+  const {email} = userData.data;
+  const {access_token: token} = tokenData.data;
+
+  const user = await User.findOne({email});
+
+  if (user) {
+    await user.updateOne({token});
+  } else {
+    // const newUser = await User.create({
+    //     email,
+    //     token,
+    //     })
+  }
+return res.redirect(`${FRONTEND_URL}?token=${token}`);
+};
+
+
+
   // return res.redirect(
-  //   `${process.env.FRONTEND_URL}?email=${userData.data.email}`
+  //   `${FRONTEND_URL}?email=${userData.data.email}`
 
     //
-    // `${process.env.FRONTEND_URL}/google-redirect/?accessToken=${accessToken}&refreshToken=${refreshToken}}`
+    // `${FRONTEND_URL}/google-redirect/?accessToken=${accessToken}&refreshToken=${refreshToken}}`
   // );
-};
+// };
 
 module.exports = googleRedirect;
