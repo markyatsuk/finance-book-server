@@ -33,4 +33,8 @@ router.put(
 
 router.delete("/:id", auth, ctrlWrapper(ctrl.deleteTransaction));
 
+router.get("/report/full", auth, ctrlWrapper(ctrl.getFullReport));
+
+router.get("/report/:type", auth, ctrlWrapper(ctrl.getSummary));
+
 module.exports = router;
