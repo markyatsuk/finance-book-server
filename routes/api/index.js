@@ -1,8 +1,9 @@
 const authRouter = require("./auth");
-const googleRouter = require("./googleAuth");
-
+const usersRouter = require("./users");
+const transactionsRouter = require("./transactions");
 
 module.exports = {
-  authRouter,
-  googleRouter,
-  };
+    authRouter,
+    usersRouter,
+    transactionsRouter,
+};
