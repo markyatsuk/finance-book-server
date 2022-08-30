@@ -7,11 +7,18 @@ const { DB_HOST, PORT } = process.env;
 
 mongoose
     .connect(DB_HOST)
-    .then(
-        () => console.log(`MongoDB connection successful, port ${PORT}`),
-        app.listen(PORT),
+    .then(() =>
+        app.listen(PORT, () => {
+            console.log(
+                `MongoDB connection successful, port: ${PORT}`.yellow.bgBlack
+                    .bold,
+            );
+        }),
     )
     .catch((error) => {
-        console.log(error.message);
+        console.log(
+            `Server not running. Error message: ${error.message}`.red.bgBlack
+                .bold,
+        );
         process.exit(1);
     });
