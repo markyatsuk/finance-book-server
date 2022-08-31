@@ -5,11 +5,7 @@ const swaggerUi = require("swagger-ui-express");
 
 global.basedir = __dirname;
 
-const { authRouter } = require("./routes/api/");
-
-const transactionRouter = require("./routes/api/transaction");
-
-const userRouter = require("./routes/api/users");
+const { authRouter, usersRouter, transactionsRouter } = require("./routes/api");
 
 const swaggerDocument = require("./swagger.json");
 
@@ -23,6 +19,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
+
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -41,6 +38,8 @@ app.use((_, res) => {
 app.use((err, _, res, __) => {
   const { status = 500, message = "Server error" } = err;
   res.status(status).json({ message });
+
+
 });
 
 module.exports = app;
