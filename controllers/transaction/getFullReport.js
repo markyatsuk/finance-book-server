@@ -65,10 +65,12 @@ const getFullReport = async (req, res) => {
     throw createError;
   }
 
+  const [data] = transactions;
+
   res.json({
     status: "success",
     code: 200,
-    transactions,
+    transactions: data.reports,
   });
 };
 

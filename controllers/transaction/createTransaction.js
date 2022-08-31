@@ -9,7 +9,7 @@ const { createError } = require(`${basedir}/helpers`);
 const createTransaction = async (req, res) => {
   console.log(req.body);
   const newTransaction = { ...req.body, owner: req.user._id };
-  const resultTransaction = await Transaction.create(newTransaction);
+  const result = await Transaction.create(newTransaction);
   const userBalance = req.body.balance;
   const resultBalance = await User.findOneAndUpdate(
     { _id: req.user._id },
@@ -22,7 +22,7 @@ const createTransaction = async (req, res) => {
   const { balance } = resultBalance;
   res.status(201).json({
     status: "Created",
-    resultTransaction,
+    result,
     balance,
   });
 };
