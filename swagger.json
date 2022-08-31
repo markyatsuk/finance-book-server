@@ -578,9 +578,22 @@
                         "example": "income"
                     },
                     "date": {
-                        "type": "string",
-                        "description": "Date of operation",
-                        "example": "20.08.2022"
+                        "type": "object",
+                        "description": "Date of transaction",
+                        "properties": {
+                            "day": {
+                                "type": "string",
+                                "example": "20"
+                            },
+                            "month": {
+                                "type": "string",
+                                "example": "08"
+                            },
+                            "year": {
+                                "type": "string",
+                                "example": "2022"
+                            }
+                        }
                     },
                     "category": {
                         "type": "string",
@@ -616,9 +629,22 @@
                                 "example": "income"
                             },
                             "date": {
-                                "type": "string",
+                                "type": "object",
                                 "description": "Date of transaction",
-                                "example": "20.08.2022"
+                                "properties": {
+                                    "day": {
+                                        "type": "string",
+                                        "example": "20"
+                                    },
+                                    "month": {
+                                        "type": "string",
+                                        "example": "08"
+                                    },
+                                    "year": {
+                                        "type": "string",
+                                        "example": "2022"
+                                    }
+                                }
                             },
                             "category": {
                                 "type": "string",
@@ -683,9 +709,22 @@
                                     "example": "income"
                                 },
                                 "date": {
-                                    "type": "string",
+                                    "type": "object",
                                     "description": "Date of transaction",
-                                    "example": "20.08.2022"
+                                    "properties": {
+                                        "day": {
+                                            "type": "string",
+                                            "example": "20"
+                                        },
+                                        "month": {
+                                            "type": "string",
+                                            "example": "08"
+                                        },
+                                        "year": {
+                                            "type": "string",
+                                            "example": "2022"
+                                        }
+                                    }
                                 },
                                 "category": {
                                     "type": "string",
@@ -786,32 +825,53 @@
                             "type": "object",
                             "properties": {
                                 "_id": {
-                                    "type": "string",
-                                    "example": "salary"
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "income"
+                                        }
+                                    }
                                 },
-                                "data": {
+                                "reports": {
                                     "type": "array",
                                     "items": {
                                         "type": "object",
                                         "properties": {
-                                            "type": {
+                                            "_id": {
                                                 "type": "string",
-                                                "example": "income"
+                                                "example": "products"
                                             },
-                                            "subCategory": {
-                                                "type": "string",
-                                                "example": "milk"
+                                            "data": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "type": {
+                                                            "type": "string",
+                                                            "example": "income"
+                                                        },
+                                                        "subCategory": {
+                                                            "type": "string",
+                                                            "example": "salary"
+                                                        },
+                                                        "sum": {
+                                                            "type": "integer",
+                                                            "example": "10000"
+                                                        }
+                                                    }
+                                                }
                                             },
-                                            "sum": {
+                                            "summary": {
                                                 "type": "integer",
-                                                "example": 1000
+                                                "example": 100000
                                             }
                                         }
                                     }
                                 },
-                                "summary": {
+                                "total": {
                                     "type": "integer",
-                                    "example": 10000
+                                    "example": 1000
                                 }
                             }
                         }
