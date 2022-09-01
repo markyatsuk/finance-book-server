@@ -4,9 +4,16 @@ const { Transaction } = require(`${basedir}/models/transaction`);
 
 const getAllTransactionsByDate = async (req, res) => {
   const { date } = req.params;
+
+  const [day, month, year] = date.split(".");
+
   const result = await Transaction.find({
     owner: req.user._id,
-    date,
+    date: {
+      day,
+      month,
+      year,
+    },
   });
 
   res.json({

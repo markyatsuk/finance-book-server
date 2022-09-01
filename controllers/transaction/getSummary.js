@@ -18,8 +18,8 @@ const getSummary = async (req, res) => {
     {
       $group: {
         _id: {
-          month: "$month",
-          year: "$year",
+          month: "$date.month",
+          year: "$date.year",
           type: "$type",
         },
         total: { $sum: "$sum" },
