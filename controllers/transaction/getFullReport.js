@@ -8,14 +8,12 @@ const getFullReport = async (req, res) => {
   const { _id: userId } = req.user;
   const { month, year } = req.query;
 
-  console.log(req.query);
-
   const transactions = await Transaction.aggregate([
     {
       $match: {
         owner: userId,
-        month: month,
-        year: year,
+        "date.month": month,
+        "date.year": year,
       },
     },
     {
