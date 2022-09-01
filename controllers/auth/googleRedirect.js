@@ -5,8 +5,6 @@ const { basedir } = global;
 
 const { User } = require(`${basedir}/models/user`);
 
-const { categories } = require("../../services");
-
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, BASE_URL, FRONTEND_URL } =
     process.env;
 
@@ -44,6 +42,12 @@ const googleRedirect = async (req, res) => {
 
     if (user) {
         await user.updateOne({ token });
+    } else {
+        const newUser = await User.create({
+            email,
+            token,
+        });
+        console.log(newUser);
     }
     return res.redirect(`${FRONTEND_URL}?token=${token}`);
     // return res.redirect(`${FRONTEND_URL}?email=${userData.data.email}`)
