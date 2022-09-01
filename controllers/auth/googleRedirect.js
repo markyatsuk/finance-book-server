@@ -37,20 +37,13 @@ const googleRedirect = async (req, res) => {
     });
     console.log("Google USER_DATA", userData.data);
 
-    const { email, picture: avatarURL } = userData.data;
+    const { email } = userData.data;
     const { id_token: token } = tokenData.data;
 
     const user = await User.findOne({ email });
 
     if (user) {
         await user.updateOne({ token });
-    } else {
-        // const newUser = await User.create({
-        //     email,
-        //     token,
-        //     avatarURL,
-        // });
-        // await categories.defaultUserCategories(newUser._id);
     }
     return res.redirect(`${FRONTEND_URL}?token=${token}`);
     // return res.redirect(`${FRONTEND_URL}?email=${userData.data.email}`)
