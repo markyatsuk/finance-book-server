@@ -24,17 +24,17 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use("/api/auth", authRouter);
 
-// app.use("/api/googleAuth/", googleRouter);
+app.use("/api/users", usersRouter);
 
-app.use("/api/transaction", transactionsRouter);
+app.use("/api/transactions", transactionsRouter);
 
-app.use((req, res) => {
-    res.status(404).json({ message: "Not found - 404, но ты залогинился! ;)" });
+app.use((_, res) => {
+  res.status(404).json({ message: "Not found - 404, но ты залогинился! ;)" });
 });
 
 app.use((err, _, res, __) => {
-    const { status = 500, message = "Server error" } = err;
-    res.status(status).json({ message });
+  const { status = 500, message = "Server error" } = err;
+  res.status(status).json({ message });
 });
 
 module.exports = app;
