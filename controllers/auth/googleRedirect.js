@@ -45,13 +45,12 @@ const googleRedirect = async (req, res) => {
     if (user) {
         await user.updateOne({ token });
     } else {
-        const newUser = await User.create({
-            email,
-            name,
-            token,
-            avatarURL,
-        });
-        await categories.defaultUserCategories(newUser._id);
+        // const newUser = await User.create({
+        //     email,
+        //     token,
+        //     avatarURL,
+        // });
+        // await categories.defaultUserCategories(newUser._id);
     }
     return res.redirect(`${FRONTEND_URL}?token=${token}`);
     // return res.redirect(`${FRONTEND_URL}?email=${userData.data.email}`)
