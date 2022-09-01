@@ -22,7 +22,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/transaction", transactionsRouter);
 
 app.use((req, res) => {
-    res.status(404).json({ message: "Not found почему-то ;)" });
+    res.status(404).json({ message: "Not found - 404, но ты залогинился! ;)" });
 });
 
 app.use((err, req, res, next) => {
