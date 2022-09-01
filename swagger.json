@@ -17,7 +17,7 @@
     ],
     "servers": [
         {
-            "url": "https://kapusta.herokuapp.com/api/"
+            "url": "https://finantial-book-kapusta.herokuapp.com/api/"
         },
         {
             "url": "http://localhost:3000/api/"
@@ -29,7 +29,7 @@
             "description": "Authorization endpoints"
         },
         {
-            "name": "User",
+            "name": "Users",
             "description": "Users endpoints"
         },
         {
@@ -145,10 +145,10 @@
                 }
             }
         },
-        "/users/current": {
+        "/auth/current": {
             "get": {
                 "tags": [
-                    "User"
+                    "Auth"
                 ],
                 "summary": "Get user's information by access token",
                 "security": [
@@ -182,7 +182,7 @@
         "/users/balance": {
             "put": {
                 "tags": [
-                    "User"
+                    "Users"
                 ],
                 "summary": "User balance update",
                 "parameters": [],
@@ -228,7 +228,7 @@
                 }
             }
         },
-        "/transaction": {
+        "/transactions": {
             "get": {
                 "tags": [
                     "Transactions"
@@ -356,7 +356,7 @@
                 }
             }
         },
-        "/transaction/report/full": {
+        "/transactions/report/full": {
             "get": {
                 "tags": [
                     "Transactions"
@@ -400,7 +400,7 @@
                 }
             }
         },
-        "/transaction/report/:type": {
+        "/transactions/report/:type": {
             "get": {
                 "tags": [
                     "Transactions"

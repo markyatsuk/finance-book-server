@@ -53,7 +53,7 @@ const joiTransactionUpdateSchema = Joi.object({
   date: Joi.string().optional(),
   category: Joi.string().optional(),
   subCategory: Joi.string().optional(),
-  balance: Joi.number(),
+  balance: Joi.number().optional(),
   sum: Joi.number().optional(),
   owner: Joi.string().optional(),
   updatedAt: Joi.string().optional(),
