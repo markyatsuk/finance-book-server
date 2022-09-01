@@ -17,13 +17,13 @@ const userSchema = Schema(
             minlength: 10,
             maxlength: 63,
             match: emailRegexp,
-            required: true,
+            required: [true, "Email is required"],
             unique: true,
         },
         password: {
             type: String,
             minlength: 6,
-            required: true,
+            // required: true,
         },
         token: {
             type: String,
