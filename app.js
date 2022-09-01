@@ -28,15 +28,13 @@ app.use("/api/auth", authRouter);
 
 app.use("/api/transaction", transactionsRouter);
 
-app.use("/api/user", usersRouter);
-
-app.use((_, res) => {
-  res.status(404).json({ message: "Not found" });
+app.use((req, res) => {
+    res.status(404).json({ message: "Not found - 404, но ты залогинился! ;)" });
 });
 
 app.use((err, _, res, __) => {
-  const { status = 500, message = "Server error" } = err;
-  res.status(status).json({ message });
+    const { status = 500, message = "Server error" } = err;
+    res.status(status).json({ message });
 });
 
 module.exports = app;
