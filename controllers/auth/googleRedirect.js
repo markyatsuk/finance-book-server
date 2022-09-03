@@ -41,7 +41,7 @@ const googleRedirect = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (user) {
-        await user.updateOne({ token });
+        await User.updateOne({ token });
     } else {
         const newUser = await User.create({
             email,
