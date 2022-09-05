@@ -49,7 +49,7 @@ const googleRedirect = async (req, res) => {
         });
         console.log(newUser);
     }
-    return res.redirect(`${FRONTEND_URL}?token=${token}`);
+    return res.redirect(`${FRONTEND_URL}?token=${token}?email=${userData.data.email}`);
     // return res.redirect(`${FRONTEND_URL}?email=${userData.data.email}`)
 };
 
