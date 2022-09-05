@@ -4,14 +4,8 @@ const Joi = require("joi");
 const emailRegexp =
     /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 
-// const emailRegexp = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/;
-
 const userSchema = Schema(
     {
-        // name: {
-        //     type: String,
-        //     required: true,
-        // },
         email: {
             type: String,
             minlength: 10,
@@ -23,7 +17,6 @@ const userSchema = Schema(
         password: {
             type: String,
             minlength: 6,
-        //    required: false,
         },
         token: {
             type: String,

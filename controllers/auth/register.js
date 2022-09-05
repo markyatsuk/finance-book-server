@@ -27,8 +27,7 @@ const register = async (req, res) => {
   });
 
   res.status(201).json({
-    // name: result.name,
-    email: result.email,
+     email: result.email,
   });
 };
 
