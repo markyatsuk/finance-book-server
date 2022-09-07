@@ -5,8 +5,6 @@ const logout = require("./logout");
 const googleAuth = require("./googleAuth");
 const googleRedirect = require("./googleRedirect");
 const balance = require("./balance");
-const verifyEmail = require("./verifyEmail");
-const resendVerifyEmail = require("./resendVerifyEmail");
 
 module.exports = {
     register,
@@ -16,6 +14,4 @@ module.exports = {
     getCurrent,
     googleAuth,
     googleRedirect,
-    verifyEmail,
-    resendVerifyEmail,
 };
