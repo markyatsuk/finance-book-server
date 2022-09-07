@@ -1,5 +1,6 @@
 const queryString = require("query-string");
 const axios = require("axios");
+const jwt = require("jsonwebtoken");
 
 const { basedir } = global;
 
@@ -33,23 +34,29 @@ const googleRedirect = async (req, res) => {
             Authorization: `Bearer ${tokenData.data.access_token}`,
         },
     });
-    console.log("Google USER_DATA", userData.data);
 
     const { email } = userData.data;
-    const { id_token: token } = tokenData.data;
 
     const user = await User.findOne({ email });
 
-    if (user) {
-        await User.updateOne({ token });
-    } else {
-        const newUser = await User.create({
-            email,
-            token,
-        });
-        console.log(newUser);
-    }
-    return res.redirect(`${FRONTEND_URL}?token=${token}?email=${userData.data.email}`);
+    let token = "";
+
+    const addToken = async (id) => {
+        token = await jwt.sign({ _id: id }, process.env.SECRET_KEY);
+        await User.findOneAndUpdate({ email }, { token });
     };
+
+    if (!user) {
+        await User.create({
+            email: userData.data.email,
+        });
+        const user = await User.findOne({ email });
+        await addToken(user._id);
+    } else {
+        await addToken(user._id);
+    }
+    return res.redirect(`${FRONTEND_URL}?token=${token}?email=${email}`);
+    // return res.redirect(`${FRONTEND_URL}?token=${token}`);
+};
 
 module.exports = googleRedirect;

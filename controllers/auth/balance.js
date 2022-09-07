@@ -1,9 +1,6 @@
 const Users = require("../../repositories/users");
 require("dotenv").config();
-
-// const {
-//     HttpCode: { OK, NOT_FOUND },
-// } = require("../../helpers");
+require("../../helpers");
 
 const updateBalance = async (req, res, next) => {
     try {
