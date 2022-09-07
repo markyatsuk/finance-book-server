@@ -16,6 +16,8 @@ router.post("/login", ctrlWrapper(ctrl.login));
 
 router.get("/current", auth, ctrlWrapper(ctrl.getCurrent));
 
+router.put("/balance", auth, ctrlWrapper(ctrl.balance));
+
 router.get("/google", ctrlWrapper(ctrl.googleAuth));
 
 router.get("/google-redirect", ctrlWrapper(ctrl.googleRedirect));
