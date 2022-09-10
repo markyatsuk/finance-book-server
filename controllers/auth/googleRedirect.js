@@ -55,7 +55,11 @@ const googleRedirect = async (req, res) => {
     } else {
         await addToken(user._id);
     }
-    return res.redirect(`${FRONTEND_URL}?token=${token}?email=${email}`);
+    // return res.redirect(
+    //     `${FRONTEND_URL}/api/auth/google-redirect/?access_token=${token}&email=${user.email}`,
+    // );
+
+    return res.redirect(`${FRONTEND_URL}?token=${token}&email=${email}`);
     // return res.redirect(`${FRONTEND_URL}?token=${token}`);
 };
 
