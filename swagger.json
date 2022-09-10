@@ -507,21 +507,26 @@
                         "type": "string",
                         "description": "Session's access token",
                         "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmMyMDg1YmQwOTM2NTI4MTA3Y2UyNzQiLCJzaWQiOiI1ZmMyZDJmY2UxZDIwNTA2NzAyYmRkMjIiLCJpYXQiOjE2MDY2MDM1MTYsImV4cCI6MTYwNjYwNzExNn0.rJ_QjU4KvA76H96RHsvOBChK0Vjbd0NmqjMxdQVJIXA"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "User email",
+                        "example": "user@example.com"
                     }
                 }
             },
             "CurrentUserResponse": {
                 "type": "object",
                 "properties": {
-                    "name": {
-                        "type": "string",
-                        "description": "Users name",
-                        "example": "user"
-                    },
                     "email": {
                         "type": "string",
                         "description": "User's email",
                         "format": "email"
+                    },
+                    "balance": {
+                        "type": "integer",
+                        "description": "Users balance",
+                        "example": 1000
                     }
                 }
             },

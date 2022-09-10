@@ -4,29 +4,26 @@ const { Transaction } = require(`${basedir}/models/transaction`);
 
 const { User } = require(`${basedir}/models/user`);
 
-const { createError } = require(`${basedir}/helpers`);
-
 const createTransaction = async (req, res) => {
-  console.log(req.body);
-  const newTransaction = { ...req.body, owner: req.user._id };
+  const { type, sum } = req.body;
+  const { _id } = req.user;
+
+  const newTransaction = { ...req.body, owner: _id };
   const result = await Transaction.create(newTransaction);
-  const userBalance = req.body.balance;
-  const resultBalance = await User.findOneAndUpdate(
-    { _id: req.user._id },
-    { balance: userBalance },
-    { returnDocument: "after" }
-  );
-  if (!resultBalance) {
-    throw createError(404);
-  }
-  const { balance } = resultBalance;
+
+  const { balance } = await User.findById(_id);
+
+  const newBalance = type === "income" ? balance + sum : balance - sum;
+
+  if (newBalance < 0) return null;
+
+  await User.findByIdAndUpdate(_id, { balance: newBalance }, { new: true });
+
   res.status(201).json({
     status: "Created",
     result,
-    balance,
+    balance: newBalance,
   });
 };
 
 module.exports = createTransaction;
-
-// owner: req.user._id;
