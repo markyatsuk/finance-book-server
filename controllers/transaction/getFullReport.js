@@ -57,6 +57,11 @@ const getFullReport = async (req, res) => {
         total: 1,
       },
     },
+    {
+      $sort: {
+        type: 1,
+      },
+    },
   ]);
 
   if (!transactions) {
