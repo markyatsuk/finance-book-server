@@ -68,10 +68,14 @@ const getFullReport = async (req, res) => {
     throw createError;
   }
 
+  const sortTransactions = transactions.sort((a, b) =>
+    a._id.type.localeCompare(b._id.type)
+  );
+
   res.json({
     status: "success",
     code: 200,
-    transactions,
+    sortTransactions,
   });
 };
 
