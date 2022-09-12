@@ -74,7 +74,7 @@ const getFullReport = async (req, res) => {
 
   const sort = sortTransactions.map((item) => {
     const sortReposts = item.reports.sort((a, b) => a._id.localeCompare(b._id));
-    return { id: item._id, reports: sortReposts };
+    return { id: item._id, reports: sortReposts, total: item.total };
   });
 
   res.json({
