@@ -35,7 +35,7 @@ const googleRedirect = async (req, res) => {
         },
     });
 
-    const { email, balance } = userData.data;
+    const { email } = userData.data;
 
     const user = await User.findOne({ email });
 
@@ -45,6 +45,8 @@ const googleRedirect = async (req, res) => {
         token = await jwt.sign({ _id: id }, process.env.SECRET_KEY);
         await User.findOneAndUpdate({ email }, { token });
     };
+
+    console.log(user.balance);
 
     if (!user) {
         await User.create({
@@ -56,7 +58,7 @@ const googleRedirect = async (req, res) => {
         await addToken(user._id);
     }
     return res.redirect(
-        `${FRONTEND_URL}?token=${token}&email=${email}&balance=${balance}`,
+        `${FRONTEND_URL}?token=${token}&email=${email}&userbalance=${user.balance}`,
     );
 };
 
