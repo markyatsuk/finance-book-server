@@ -58,7 +58,7 @@ const googleRedirect = async (req, res) => {
         await addToken(user._id);
     }
     return res.redirect(
-        `${FRONTEND_URL}?token=${token}&email=${email}&userbalance=${user.balance}`,
+        `${FRONTEND_URL}?token=${token}&email=${email}&balance=${user.balance}`,
     );
 };
 
