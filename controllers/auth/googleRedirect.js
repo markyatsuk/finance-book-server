@@ -35,7 +35,7 @@ const googleRedirect = async (req, res) => {
         },
     });
 
-    const { email } = userData.data;
+    const { email, balance } = userData.data;
 
     const user = await User.findOne({ email });
 
@@ -55,12 +55,9 @@ const googleRedirect = async (req, res) => {
     } else {
         await addToken(user._id);
     }
-    // return res.redirect(
-    //     `${FRONTEND_URL}/api/auth/google-redirect/?access_token=${token}&email=${user.email}`,
-    // );
-
-    return res.redirect(`${FRONTEND_URL}?token=${token}&email=${email}`);
-    // return res.redirect(`${FRONTEND_URL}?token=${token}`);
+    return res.redirect(
+        `${FRONTEND_URL}?token=${token}&email=${email}&balance=${balance}`,
+    );
 };
 
 module.exports = googleRedirect;
