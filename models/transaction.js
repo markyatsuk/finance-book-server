@@ -44,7 +44,7 @@ const joiTransactionCreateSchema = Joi.object({
   }),
   category: Joi.string().required(),
   subCategory: Joi.string().required(),
-  sum: Joi.number().integer().options({ convert: false }),
+  sum: Joi.number().options({ convert: false }),
   balance: Joi.number(),
 });
 

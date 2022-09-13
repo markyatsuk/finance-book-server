@@ -8,6 +8,7 @@ const { createError } = require(`${basedir}/helpers`);
 
 const createTransaction = async (req, res) => {
   const { _id } = req.user;
+  const { type, sum } = req.body;
 
   const newTransaction = { ...req.body, owner: _id };
   const result = await Transaction.create(newTransaction);
@@ -18,10 +19,16 @@ const createTransaction = async (req, res) => {
 
   const { balance } = await User.findById(_id);
 
+  const newBalance = type === "income" ? balance + sum : balance - sum;
+
+  const rounBalance = Math.round(newBalance * 100) / 100;
+
+  await User.findByIdAndUpdate(_id, { balance: rounBalance }, { new: true });
+
   res.status(201).json({
     status: "Created",
     result,
-    balance,
+    balance: rounBalance,
   });
 };
 
