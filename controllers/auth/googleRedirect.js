@@ -46,7 +46,7 @@ const googleRedirect = async (req, res) => {
     token = await jwt.sign({ _id: id }, process.env.SECRET_KEY);
     await User.findOneAndUpdate({ email }, { token });
   };
-  
+
   if (!user) {
     await User.create({
       email: userData.data.email,
@@ -60,12 +60,6 @@ const googleRedirect = async (req, res) => {
   }
   return res.redirect(
     `${FRONTEND_URL}?token=${token}&email=${email}&balance=${balance}`
-
-  }
-  return res.redirect(
-    `${FRONTEND_URL}?token=${token}&email=${email}&balance=${
-      user.balance ?? "00.00"
-    }`
   );
 };
 
